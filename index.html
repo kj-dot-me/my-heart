@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For you 🐼</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Delius Swash Caps", cursive;
+            font-weight: 400;
+            font-style: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0c2c0;
+        }
+
+        .heart {
+            width: 100px;
+            height: 90px;
+            position: relative;
+            margin: 20px auto;
+            background-color: #F95454;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            opacity: 0.7;
+            transition: transform 0.3s, opacity 0.3s filter 0.3s;
+            filter: blur(2px);
+            animation: 1s beat ease infinite;
+        }
+
+        @keyframes beat {
+            0% {
+                transform: scale(0.8) rotate(-45deg);
+            }
+            50% {
+                transform: scale(1) rotate(-45deg);
+            }
+            100% {
+                transform: scale(0.8) rotate(-45deg);
+            }
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background-color: #F95454;
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .heart:before {
+            top: -50px;
+        }
+
+        .heart:after {
+            left: 45px;
+            bottom: 0;
+        }
+
+        .toggle-wrapper {
+            text-align: center;
+        }
+
+        .inputWrapper {
+            padding: 20px;
+            margin-top: 72px;
+            text-align: left;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin: 20px auto;
+            display: block;
+            accent-color: #F95454;
+        }
+        
+
+        .quality-1 {
+            opacity: 0.4;
+            filter: blur(3px);
+            animation: 1s beat ease infinite;
+        }
+
+        .quality-2 {
+            opacity: 0.6;
+            filter: blur(2px);
+            animation: 1s beat2 ease infinite;
+        }
+
+        @keyframes beat2 {
+            0% {
+                transform: scale(1) rotate(-45deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(-45deg);
+            }
+            100% {
+                transform: scale(1) rotate(-45deg);
+            }
+        }
+
+        .quality-3 {
+            opacity: 0.8;
+            filter: blur(1px);
+            animation: 1s beat3 ease infinite;
+        }
+
+        @keyframes beat3 {
+            0% {
+                transform: scale(1.2) rotate(-45deg);
+            }
+            50% {
+                transform: scale(1.5) rotate(-45deg);
+            }
+            100% {
+                transform: scale(1.2) rotate(-45deg);
+            }
+        }
+
+        .quality-4 {
+            opacity: 1;
+            filter: none;
+            animation: 0.8s beat4 ease infinite;
+        }
+
+        @keyframes beat4 {
+            0% {
+                transform: scale(1.5) rotate(-45deg);
+            }
+            25% {
+                transform: scale(1.8) rotate(-45deg);
+            }
+            50% {
+                transform: scale(1.6) rotate(-45deg);
+            }
+            75% {
+                transform: scale(1.8) rotate(-45deg);
+            }
+            100% {
+                transform: scale(1.5) rotate(-45deg);
+            }
+        }
+
+        .heart span {
+            display: none;
+            transform: rotate(45deg);
+        }
+
+        .quality-4 span {
+            display: block;
+            height: 93px;
+            font-size: 23px;
+            font-family: "Rubik Bubbles", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            margin-bottom: 7px;
+        }
+        .desc {
+            font-size: 14px;
+            font-style: italic;
+            display: none;
+        }
+
+        .question {
+            margin-bottom: 100px;
+            font-weight: bolder;
+            font-size: 20px;
+            padding: 20px;
+        }
+        #banner {
+            font-size: 40px;
+            opacity: 0;
+            transition: opacity 3s ease-out;
+        }
+        #banner.appear {
+            opacity: 1;
+        }
+
+        .visible {
+            display: block !important;
+        }
+
+        #main-content {
+            transition: opacity 2s ease-out;
+            transform-origin: top right;
+            opacity: 1;
+        }
+        #main-content.disappear {
+            opacity: 0;
+        }
+        #main-content.vanish {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-wrapper">
+        <div id="main-content">
+            <div class="question">Do you know who’s here?</div>
+            <div class="heart" id="heart">
+                <span>its YOU<br>Panda 🐼</span>
+            </div>
+            <div class="inputWrapper">
+                <div>Curious, hmmm? Zoom in from here, and you'll know who it is 🤭</div>
+                <input type="range" id="qualityToggle" min="1" max="4" step="1" value="1">
+                <div id="desc-2" class="desc">Still not quite clear n... maybe you need to zoom in a bit more 🤔</div>
+                <div id="desc-3" class="desc">Take this 🔍 and slight zoom in more, It'll help you to look closely! 😛</div>
+                <div id="desc-4" class="desc">So, you figured it out? Took you long enough! 🫣🤭</div>
+            </div>
+        </div>
+        <div id="banner">
+            Happiest Birthdayy<br>Pandaaa<br>🎉💕
+        </div>
+    </div>
+
+    <script>
+        const heart = document.getElementById("heart");
+        const toggle = document.getElementById("qualityToggle");
+        const banner = document.getElementById("banner");
+        const main = document.getElementById("main-content");
+
+        let timeOutObj;
+
+        toggle.addEventListener("input", () => {
+            const quality = toggle.value;
+            heart.className = `heart quality-${quality}`;
+            const allDescs = document.getElementsByClassName('desc');
+            for (const desc of allDescs) {
+                desc.classList.remove('visible');
+            }
+            const targetDesc = document.getElementById(`desc-${quality}`);
+            targetDesc.classList.add('visible');
+
+            console.log({ quality })
+            
+            if (quality === '4') {
+                timeOutObj = setTimeout(() => {
+                    main.classList.add('disappear');
+                    setTimeout(() => {
+                        main.classList.add('vanish');
+                        banner.classList.add('appear');
+                    }, 2000);
+                }, 3000);
+            } else {
+                clearTimeout(timeOutObj);
+            }
+        });
+    </script>
+</body>
+</html>
